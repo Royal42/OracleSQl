@@ -1,0 +1,90 @@
+--foreign key
+--product
+create table product
+(
+id int primary key,
+name varchar2(20)
+);
+
+insert all 
+into product 
+values(1,'computer')
+into product 
+values(2, 'tv')
+select * from dual;
+
+drop table product;
+
+delete from product where product.id=1;
+
+
+--customer
+create table customer
+(
+cus_id int primary key,
+name varchar2(20),
+surname varchar2(20),
+phone_number number,
+product_id int,
+constraint p_id foreign key(product_id) references product(id)
+);
+
+insert all
+into customer 
+values('1', 'Nurlan', 'Veliyev', '0553648383', 1)
+into customer 
+values('2', 'Aysel', 'Memmedli', '0503648903', 2)
+select * from dual;
+
+truncate table customer;
+
+select * from customer;
+
+drop table customer;
+
+
+create table product
+(
+id int primary key,
+name varchar2(20)
+);
+
+insert all 
+into product 
+values(1,'computer')
+into product 
+values(2, 'tv')
+select * from dual;
+
+
+create table car_marka
+(
+id int primary key,
+name varchar2(20)
+);
+
+insert all 
+into car_marka 
+values(1,'kia')
+into car_marka 
+values(2, 'bmw')
+select * from dual;
+
+drop table car_marka;
+
+delete from car_marka;
+
+create table car_model
+(
+id int primary key,
+name varchar2(20),
+marka_id int,
+constraint con_markaid foreign key(marka_id) references car_marka(id) on delete set null
+--constraint con_markaid foreign key(marka_id) references car_marka(id) on delete cascade
+);
+
+select * from car_model;
+
+drop table car_model;
+
+insert into car_model values(1,'stringer', 1);
