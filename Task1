@@ -1,0 +1,33 @@
+create table mushteri 
+name varchar(20), surname varchar(20), birth_place varchar(20), gender char(1), identityno varchar(9), birth_date date 
+alter table mushteri rename to customer; 
+insert all into customer values('shamo', 'musayev', 'goychay', 'm', 'AA1200978', to_date('2001-06-14', 'yyyy-mm-dd')) into customer values('renad', 'ehmedov', 'agstafa', 'm', 'AA4506778', 
+to_date('1998-03-24', 'yyyy-mm-dd')) into customer values('leyla', 'ehmedli', 'baki', 'f', 'AA1178298', to_date('2004-12-14', 'yyyy-mm-dd')) into customer values('ehmed', 'musayev', 'fizuli', 'm', 'AA9812970', to_date('1981-06-14', 'yyyy-mm-dd')) select * from dual; 
+select * from customer; 
+select name, surname, birth_place, gender, identityno, to_char(birth_date, 'dd-mm-yyyy') from customer; 
+drop table cutomer; 
+create table cars 
+marka varchar(20), model varchar(20), country varchar(20), car_year date, price number(7) 
+insert all into cars values ('kia', 'optima','south korea', to_date('2018-01-01', 'yyyy-mm dd'), 33000) into cars values ('toyota', 'camry, japan', to_date('2021-12-12', "yyyy-mm-dd'), 48000) into cars values ('bmw', 'i8',germany', to_date('2015-12-02', 'yyyy-mm-dd'), 156400) into cars values ('tesla', 'model x','us', 
+to_date('2021-12-12', 'yyyy-mm-dd'), 153000) select * from dual; 
+select * from cars; 
+drop table cars; 
+create table kitablar 
+kitab_ad varchar(20), kitab_yazar varchar(20), kitab_sehive varchar(20), kitab_qiymet number(5,2), kitab_tarix date, kitab_chapevi varchar(20) 
+insert into kitablar values('QOCA VE DENIZ', 'ERNEST HEMES', 300, 25.00, to_date('1995-07-08', 'yyyy-mm-dd'), 
+'AY'); 
+insert into kitablar values('HEYAT ESHQI', 'CEK LONDON', 250, 30.00, to_date('1999-12-24', 'yyyy mm-dd'), 'DAMLA'); 
+insert into kitablar values('CINAYET VE CEZA', 'DOSTOYEVSKI', 350, 35.00, to_date('1990-05-12', 'yyyy-mm-dd'), 'GUNESH'); 
+select * from kitablar; 
+drop table kitablar; 
+create table employee 
+name varchar(20), surname varchar(20), birth_date date, age int, country varchar(20), salary number(5,1), phone_number int, hire_date date 
+insert into employee values('Royal', 'Atakishiyev', to_date('19:05:2003', 'dd:mm.yyyy'), 19, 'Azerbaijan', 2222, 0777837372, 
+to_date('29:05:2020', 'dd:mm:yy')); 
+insert into employee values('Hesen', 'Memmedov', to date('09:03:1992', 'dd:mm:yyyy'), 32, 'Azerbaijan', 5322.2, 0771247372, to_date('23:02:2008', 'dd:mm:yy')), 
+insert into employee values('Yusif', 'Memmedov', to_date('09:03:1992', 'dd:mm:yyyy'), 32, 'Azerbaijan', 5322.2, 0771247372, to date('23:02:2008', 'dd:mm:yy')); 
+select * from employee; 
+select name, surname, to_char(birth_date, 'dd-mm-yyyy'), age, country, salary, phone_number, 
+to_char(hire_date, 'dd-mm-yy') from employee; 
+alter table employee rename name to emp_name; 
+drop table employee; 
