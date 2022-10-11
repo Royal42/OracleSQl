@@ -1,0 +1,2 @@
+--1 ilde aylarin sonuncu gunlerini cap etmek
+select Last_day(to_date('01-JAN-22','dd-mon-yy')+29*level) from dual connect by level<13;
