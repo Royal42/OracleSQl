@@ -1,0 +1,2 @@
+--Ayın 1ci günlərini çap etmək
+select trunc(to_date('30-SEP-22','dd-mon-yy'),'day')-7*(level-1) from dual connect by level<5;
