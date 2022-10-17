@@ -1,0 +1,2 @@
+--Iki tarix arasindaki butun gunleri cap etmek
+select to_date('01-01-2021', 'dd-mm-yyyy')+level from dual connect by level <to_date('01-02-2021', 'dd-mm-yyyy')-to_date('01-01-2021', 'dd-mm-yyyy');
