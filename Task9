@@ -1,0 +1,23 @@
+--Customerlerden hansı hansı şeherde yerlesen warehouseden məhsul almayıb 
+with
+cus_ord as (select c.customer_id, c.name, o.order_id from customers c, orders o where c.customer_id=o.customer_id),
+ordi_pro as (select oi.order_id, p.product_id from order_items oi, products p where oi.product_id=p.product_id),
+inv_ware as (select i.product_id, w.location_id from inventories i, warehouses w where i.warehouse_id=w.warehouse_id),
+loc_coun as (select l.location_id, l.city from locations l, countries c where l.country_id=c.country_id),
+
+co_oip as (select c_o.name, oi_p.product_id from cus_ord c_o, ordi_pro oi_p where c_o.order_id=oi_p.order_id),
+iw_lc as (select lc.city, iw.product_id from inv_ware iw, loc_coun lc where iw.location_id=lc.location_id)
+
+select co_oip.name, iw_lc.city from co_oip, iw_lc where co_oip.product_id=iw_lc.product_id;
+
+
+--Və hansı işçi hansı anbardan nə qədr məhsul satıb joinsiz yazmaq
+with 
+emp_ord as (select e.employee_id ,e.first_name , e.last_name , o.order_id from employees e ,orders o where e.employee_id=o.salesman_id),
+ordit_pro as (select oi.order_id , oi.product_id from order_items oi where exists (select * from products p where oi.product_id =p.product_id)),
+wh_inv as (select w.warehouse_id , w.warehouse_name , i.product_id from warehouses w , inventories i where w.warehouse_id=i.warehouse_id),
+emp_pro as (select emp_ord.employee_id, emp_ord.first_name ,emp_ord.last_name ,ordit_pro.product_id from emp_ord , ordit_pro where emp_ord.order_id=ordit_pro.order_id)
+select emp_pro.employee_id, emp_pro.first_name, emp_pro.last_name , wh_inv.warehouse_id , wh_inv.warehouse_name ,count(wh_inv.product_id) 
+from emp_pro,wh_inv 
+where emp_pro.product_id=wh_inv.product_id 
+group by emp_pro.employee_id, emp_pro.first_name, emp_pro.last_name , wh_inv.warehouse_id , wh_inv.warehouse_name;
